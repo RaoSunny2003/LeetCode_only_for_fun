@@ -1,15 +1,21 @@
-import { useState } from "react";
-import { Landing } from "./Component/Landing";
-import { Problems } from "./Component/Problems/Problems"
-
+import "./App.css";
+import Home from "./Components/Home";
+import Navbar from "./Components/Navbar";
+import Prob from "./Components/Prob";
+import Problems from "./Components/Problems";
+import { Route, Routes } from "react-router-dom";
+import User from "./Components/User";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      {/* <Landing /> */}
-      < Problems />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/problems/all" element={<Problems />} />
+        <Route path="/prob/:probId" element={<Prob />} />
+        <Route path="/user" element={<User />} />
+      </Routes>
     </>
   );
 }
