@@ -10,9 +10,9 @@ const router = express.Router();
 
 router.post("/signup", handleUserSignUp);
 
-router.get("/login", handleUserLogIn);
+router.post("/login", handleUserLogIn);
 
-router.get("/admin", handleAdminRoute);
+router.post("/admin", handleAdminRoute);
 
 router.get("/submissions", handleSubmissions);
 

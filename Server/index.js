@@ -1,21 +1,17 @@
 const express = require("express");
 const questionsRoute = require("./routes/questions");
-const userDataRoute = require("./routes/users");
+const userRoute = require("./routes/users");
 const { connectMongoDB } = require("./connect");
-const { handleUserSignUp } = require("./controllers/users");
+const { handleUserSignUp, handleUserLogIn } = require("./controllers/users");
 const app = express();
 const PORT = 3000;
 
-// Parse JSON and URL-encoded data
+// Middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Your route or middleware that uses req.body
-app.post("/signup", handleUserSignUp);
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/questions", questionsRoute);
-
-app.use("/", userDataRoute);
+app.use("/", userRoute);
 
 app.get("/", (req, res) => res.json({ msg: "HOME PAGE" }));
 

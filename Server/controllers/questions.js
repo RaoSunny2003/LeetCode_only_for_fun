@@ -1,13 +1,15 @@
-function handleQuestionsLists(req, res) {
+const { QUESTIONS } = require("../model/questions");
+
+async function handleQuestionsLists(req, res) {
   // For Questions list rendering
-  console.log("Qusetions");
-  res.json({ msg: "QUESTIONS" });
+  const allQuestions = await QUESTIONS.find({});
+  res.json({ allQuestions });
 }
 
-function handleQuestionsRender(req, res) {
+function handleQuestionRender(req, res) {
   // For Qusetion rendering on code place
-  console.log(req.params.id);
-  res.json({ msg: `${req.params.id}` });
+  console.log(req.params.titleId);
+  res.json({ msg: `${req.params.titleId}` });
 }
 
-module.exports = { handleQuestionsLists, handleQuestionsRender };
+module.exports = { handleQuestionsLists, handleQuestionRender };
