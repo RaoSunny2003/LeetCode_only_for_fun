@@ -6,7 +6,6 @@ export default function Navbar() {
     <>
       <div>
         <nav className="navbar">
-          <ul>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -16,7 +15,9 @@ export default function Navbar() {
             <li>
               <Link to="/user">User</Link>
             </li>
-          </ul>
+            <li>
+              <Link to="/signup">Register</Link>
+            </li>
         </nav>
       </div>
     </>

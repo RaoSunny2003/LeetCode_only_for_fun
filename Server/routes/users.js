@@ -1,19 +1,17 @@
 const express = require("express");
 const {
-  handleAdminRoute,
   handleUserLogIn,
   handleUserSignUp,
-  handleSubmissions,
 } = require("../controllers/users");
 
 const router = express.Router();
 
+router.get('/signup', (req, res) => {
+  return res.redirect('http://localhost:5173/signup')
+})
+
 router.post("/signup", handleUserSignUp);
 
 router.post("/login", handleUserLogIn);
-
-router.post("/admin", handleAdminRoute);
-
-router.get("/submissions", handleSubmissions);
 
 module.exports = router;

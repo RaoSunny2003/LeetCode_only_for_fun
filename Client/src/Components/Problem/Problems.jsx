@@ -10,8 +10,6 @@ export default function Problems() {
       .then((json) => setProblems(json));
   }, []);
 
-  console.log("Problems", problems);
-
   if (problems.length === 0) {
     return <p>Loading...</p>;
   }
@@ -24,9 +22,9 @@ export default function Problems() {
           <th>title</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="allProblem">
         {problems.map((problem) => (
-          <tr key={problem.id}>
+          <tr key={problem.id} className="singleProblem">
             <td>{problem.id}</td>
             <td>
               <NavLink to={`/prob/${problem.id}`}>{problem.title}</NavLink>

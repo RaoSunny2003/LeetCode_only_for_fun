@@ -24,8 +24,9 @@ async function handleAdminRoute(req, res) {
 }
 
 async function handleUserSignUp(req, res) {
+
   //For Signup
-  const { username, email, password, userRole } = req.body;
+  const { username, email, password, userRol } = req.body;
 
   const cheackUsername = await USERS.findOne({ username });
   const cheackEmail = await USERS.findOne({ email });
@@ -36,13 +37,15 @@ async function handleUserSignUp(req, res) {
     username,
     email,
     password,
-    userRole,
+    userRol,
   });
 
   return res.redirect("/");
 }
 
+
 async function handleUserLogIn(req, res) {
+
   //For Login
   const { email, password } = req.body;
 
