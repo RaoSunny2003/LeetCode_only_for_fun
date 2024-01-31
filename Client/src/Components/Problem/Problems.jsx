@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 export default function Problems() {
+  const problem = useSelector((state) => state);
+  console.log("Problems", problem);
+
   const [problems, setProblems] = useState([]);
 
   useEffect(() => {
