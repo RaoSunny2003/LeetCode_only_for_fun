@@ -1,41 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
 export default function Problems() {
-  const problem = useSelector((state) => state);
-  console.log("Problems", problem);
-
-  const [problems, setProblems] = useState([]);
+  const [questionsList, setQuestions] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("http://localhost:3000/questions/all")
       .then((response) => response.json())
-      .then((json) => setProblems(json));
+      .then(({ allQuestions }) => {
+        setQuestions(allQuestions);
+      });
   }, []);
-
-  if (problems.length === 0) {
-    return <p>Loading...</p>;
-  }
-
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>userId</th>
-          <th>title</th>
-        </tr>
-      </thead>
-      <tbody className="allProblem">
-        {problems.map((problem) => (
-          <tr key={problem.id} className="singleProblem">
-            <td>{problem.id}</td>
-            <td>
-              <NavLink to={`/prob/${problem.id}`}>{problem.title}</NavLink>
-            </td>
-          </tr>
+    <>
+      <div>
+        {questionsList.map((que) => (
+          <div key={que._id}>{que.title}</div>
         ))}
-      </tbody>
-    </table>
+      </div>
+    </>
   );
 }

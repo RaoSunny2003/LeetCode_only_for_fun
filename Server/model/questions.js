@@ -19,8 +19,7 @@ const questionSchema = new mongoose.Schema({
     required: true,
   },
   solutions: {
-    type: String,
-    required: true,
+    type: String
   },
 });
 
