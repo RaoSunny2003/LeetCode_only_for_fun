@@ -4,22 +4,23 @@ import { useParams } from "react-router-dom";
 export default function Prob() {
   const params = useParams();
 
-  const [probData, setProbData] = useState(null);
+  const [probData, setProbData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${params.probId}`)
+    fetch(`http://localhost:3000/questions/${params.probId}`)
       .then((response) => response.json())
       .then((json) => setProbData(json));
   }, []);
-  console.log("Problem Data", probData);
 
-  if (probData === null) return <p>Loading...</p>;
+  if (probData.length === 0) return <p>Loading...</p>;
   return (
-    <div>
-      <h2>
-        {probData.id}. {probData.title}
-      </h2>
-      <p>{probData.body}</p>
+    <div className="prob">
+      {probData.map((prob) => (
+        <div className="problemListed" key={prob._id}>
+          <h1>{prob.title}</h1>
+          <p>{prob.description}</p>
+        </div>
+      ))}
     </div>
   );
 }
