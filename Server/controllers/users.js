@@ -28,10 +28,10 @@ async function handleUserSignUp(req, res) {
   //For Signup
   const { username, email, password, userRol } = req.body;
 
-  const cheackUsername = await USERS.findOne({ username });
-  const cheackEmail = await USERS.findOne({ email });
-  if (cheackUsername) return res.status(400).redirect("/signup");
-  if (cheackEmail) return res.status(400).redirect("/signup");
+  const checkUsername = await USERS.findOne({ username });
+  const checkEmail = await USERS.findOne({ email });
+  if (checkUsername) return res.status(400).redirect("/signup");
+  if (checkEmail) return res.status(400).redirect("/signup");
 
   await USERS.create({
     username,
@@ -49,11 +49,11 @@ async function handleUserLogIn(req, res) {
   //For Login
   const { email, password } = req.body;
 
-  const cheackEmail = await USERS.findOne({ email });
-  if (!cheackEmail) return res.status(403).json({ error: "Invalid Email" });
+  const checkEmail = await USERS.findOne({ email });
+  if (!checkEmail) return res.status(403).json({ error: "Invalid Email" });
 
-  const cheackPassword = cheackEmail.password;
-  if (password !== cheackPassword) {
+  const checkPassword = checkEmail.password;
+  if (password !== checkPassword) {
     return res.status(401).json({ error: "Invalid Password" });
   }
 
